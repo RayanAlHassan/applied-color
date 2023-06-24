@@ -6,61 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learn JavaScript</title>
     <link rel="stylesheet" href="main.css" />
+    
+
     <style>
-      body {
+      .container {
         background-color: #eee;
-      }
-      ul {
-        padding: 0;
-        margin: 0;
-        background-color: #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
         margin: 20px auto;
         padding: 20px;
-        width: 400px;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
       }
-      ul li {
-        width: 60px;
-        height: 60px;
-        border: 2px solid transparent;
-        opacity: 0.4;
-        cursor: pointer;
-        transition: 0.3s;
+  
+      .form {
+          margin-bottom: 20px;
       }
-      ul li.active,
-      ul li:hover {
-        opacity: 1;
+  
+      .input {
+          padding: 10px;
+          margin-right: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
       }
-      ul li:first-child {
-        background-color: red;
+  
+      .add {
+          padding: 10px 20px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
       }
-      ul li:nth-child(2) {
-        background-color: green;
+  
+      .add:hover {
+          background-color: #45a049;
       }
-      ul li:nth-child(3) {
-        background-color: blue;
+  
+      .tasks {
+          width: 300px;
+          border: 1px solid #ccc;
+          padding: 10px;
+          border-radius: 4px;
       }
-      ul li:nth-child(4) {
-        background-color: black;
+      span{
+          width: 200px;   /* nessesary for wrapping */
+          padding: 10px;
+          margin-right: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: white;
+          position: relative;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
       }
-      .experiment {
-        background-color: red;
-        width: 600px;
-        height: 300px;
-        margin: 20px auto;
+      button{
+        position: absolute;
+        left: 236px;
+        white-space: normal;
+        word-wrap: break-word;
       }
-    </style>
-  </head>
-  <body>
-    <ul>
-      <li class="active" data-color="red"></li>
-      <li data-color="green"></li>
-      <li data-color="blue"></li>
-      <li data-color="black"></li>
-    </ul>
-    <div class="experiment"></div>
+  </style>
+  
+  <div class="container">
+      <div class="form">
+          <input type="text" class="input" />
+          <input type="submit" class="add" value="Add Task" />
+      </div>
+      <div class="tasks"></div>
+  </div>
+  
     <script src="main.js"></script>
   </body>
 </html>
+
+
+ 

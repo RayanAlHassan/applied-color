@@ -1,76 +1,91 @@
+let input = document.querySelector(".input");
+let add = document.querySelector(".add");
+let tasks = document.querySelector(".tasks");
 
-/*
-  BOM [Browser Object Model]
-  Local Storage
-  - setItem
-  - getItem
-  - removeItem
-  - clear
-  - key
+add.addEventListener("click", () =>
+{
+  if (input.value !== "")
+  {
+    let span = document.createElement("span");
+    let del = document.createElement("button");
 
-  Info
-  - No Expiration Time
-  - HTTP And HTTPS
-  - Private Tab
-*/
+    span.innerText = input.value;
+    del.innerText = "Delete";
 
-// Set
-// window.localStorage.setItem("color", "#F00");
-// window.localStorage.fontWeight = "bold";
-// window.localStorage["fontSize"] = "20px";
+    del.addEventListener( "click",()=> {
+      span.remove();
+      window.localStorage.removeItem(`spann ${span.dataset.index }`) // to delete the data from localstorage
+    })
 
-// // Get
-// console.log(window.localStorage.getItem("color"));
-// console.log(window.localStorage.color);
-// console.log(window.localStorage["color"]);
+    span.append(del);
+    tasks.appendChild(span);
+    span.dataset.index = tasks.childElementCount; // that is like an id for spann  // get the nb of child in this element and give it to the index
 
-// // Remove One
-// // window.localStorage.removeItem("color");
+    window.localStorage.setItem(`spann ${ span.dataset.index }`, span.innerText.substring(0,span.innerText.indexOf("Delete")));
 
-// // Remove All
-// // window.localStorage.clear();
+    input.value = "";
+    
+    console.log(span.innerText.substring(0, span.innerText.indexOf("Delete")));
+    console.log(tasks.childElementCount);
+  }
+})
 
-// // Get Key
-// console.log(window.localStorage.key(0));
+window.addEventListener("load", () =>
+{
+  for (let i = 0; i < localStorage.length; i++)
+  {
+    let key = window.localStorage.key(i);
+    if (key)//if i have key  ..
+    {
+      let span = document.createElement("span");
+      let del = document.createElement("button");
+      del.innerText = "Delete";
 
-// // Set Color In Page
-// document.body.style.backgroundColor = window.localStorage.getItem("color");
+      del.addEventListener( "click",()=> {
+        span.remove();
+        window.localStorage.removeItem(key)// remove of index is as same as remove for whole element
+      })
 
-// console.log(window.localStorage);
-// console.log(typeof window.localStorage);
-//-----------------------------------------------------------------
-/*
-  BOM [Browser Object Model]
-  Local Storage Practice
-*/
+      span.innerText = window.localStorage.getItem(key);
+      span.dataset.index = key.substring(5);
+      console.log(key.substring(5));// will start after the 5 element in key=> index
+      span.append(del);
+      tasks.appendChild(span)
 
-let lis = document.querySelectorAll("ul li");
-let exp = document.querySelector(".experiment");
+  
+    }
 
-if (window.localStorage.getItem("color")) {
-  // If There Is Color In Local Storage
-  // [1] Add Color To Div
-  exp.style.backgroundColor = window.localStorage.getItem("color");
-  // [2] Remove Active Class From All Lis
-  lis.forEach((li) => {
-    li.classList.remove("active");
-  });
-  // [3] Add Active Class To Current Color
-  document.querySelector(`[data-color="${window.localStorage.getItem("color")}"]`).classList.add("active");
-}
+    
+  }
+})
 
-lis.forEach((li) => {
-  li.addEventListener("click", (e) => {
-    // console.log(e.currentTarget.dataset.color);
-    // Remove Active Class From all Lis
-    lis.forEach((li) => {
-      li.classList.remove("active");
-    });
-    // Add Active Class To Current Element
-    e.currentTarget.classList.add("active");
-    // Add Current Color To Local Storage
-    window.localStorage.setItem("color", e.currentTarget.dataset.color);
-    // Change Div Background Color
-    exp.style.backgroundColor = e.currentTarget.dataset.color;
-  });
-});
+// window.localStorage.clear();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
