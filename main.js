@@ -14,7 +14,7 @@ add.addEventListener("click", () =>
 
     del.addEventListener( "click",()=> {
       span.remove();
-      window.localStorage.removeItem(`spann ${span.dataset.index }`) // to delete the data from localstorage
+      window.localStorage.removeItem(`spann ${span.dataset.index }`) // to delete the data from localstorage , remove index or id will remove the whole item 
     })
 
     span.append(del);
